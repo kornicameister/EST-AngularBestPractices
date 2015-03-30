@@ -1,0 +1,82 @@
+{
+  "name": "ESTAngularBestPractices",
+  "description": "Project developed for the purpose of the external trainings",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kornicameister/EST-AngularBestPractices.git"
+  },
+  "keywords": [
+    "nodejs",
+    "npm",
+    "restify",
+    "angularjs",
+    "training"
+  ],
+  "category": [
+    "training"
+  ],
+  "main": "build/js/todo.js",
+  "authors": [
+    "kornicameister@gmail.com"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor",
+    "build"
+  ],
+  "overrides": {
+    "angular": {
+      "dev": "angular.js",
+      "prod": "angular.min.js"
+    },
+    "angular-animate": {
+      "dev": "angular-animate.js",
+      "prod": "angular-animate.min.js"
+    },
+    "angular-bootstrap": {
+      "dev": "ui-bootstrap-tpls.js",
+      "prod": "ui-bootstrap-tpls.min.js"
+    },
+    "angular-growl-v2": {
+      "dev": [
+        "angular-growl.js",
+        "angular-growl.css"
+      ],
+      "prod": [
+        "angular-growl.min.js",
+        "angular-growl.min.css"
+      ]
+    }
+  },
+  "dependencies": {
+    "lodash": "3.3.0",
+    "normalize-css": "3.0.x",
+    "angular": "1.4.x",
+    "angular-bootstrap": "0.12.x",
+    "angular-ui-router": "0.2.x",
+    "angular-ui-grid": "3.0.x",
+    "angular-animate": "1.4.x",
+    "angular-moment": "0.9.x",
+    "angular-cookies": "1.4.x",
+    "angular-growl-v2": "0.7.x",
+    "bootstrap": "3.3.x",
+    "jquery": "latest",
+    "bowser": "~0.7.2",
+    "firebase": "~2.2.0",
+    "angularfire": "~1.0.0"
+  },
+  "devDependencies": {
+    "angular-mocks": "latest",
+    "angular-scenario": "latest"
+  },
+  "resolutions": {
+    "angular-bootstrap": "0.12.x",
+    "angular-translate": "2.6.x",
+    "angular": "1.4.x"
+  }
+}
