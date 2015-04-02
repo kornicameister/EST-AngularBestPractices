@@ -1,4 +1,4 @@
 {
    "analytics"  : true,
-   "directory"  : "dev/client/bower_components"
+   "directory"  : "app/bower_components"
 }

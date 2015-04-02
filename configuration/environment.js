@@ -4,9 +4,8 @@ module.exports = (function createEnv() {
         path = require('path');
 
     environment.paths = {
-        client: path.join(path.dirname(__filename), '../dev/client/src'),
-        clientLib: path.join(path.dirname(__filename), '../dev/client/bower_components'),
-        server: path.join(path.dirname(__filename), '../dev/server'),
+        client: path.join(path.dirname(__filename), '../app/src'),
+        clientLib: path.join(path.dirname(__filename), '../app/bower_components'),
         build: path.join(path.dirname(__filename), '../build')
     };
 
