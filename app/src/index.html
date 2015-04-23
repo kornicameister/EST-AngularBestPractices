@@ -1,26 +1,24 @@
-<html>
+<html ng-app="todo">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"
-          lang="pl"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" lang="pl"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{{PAGE_TITLE}}</title>
+    <title>{Todo Application Showcase}</title>
 
     <!-- inject:css -->
     <!-- endinject -->
 </head>
-<body ng-app="todo">
-<div>
-    <header>
+<body>
 
-    </header>
-    <section id="todo-content" class="container-fluid">
-        <div ui-view="content"></div>
-    </section>
-    <footer>
-
-    </footer>
+<div class="container-fluid clearfix">
+    <div class="slide center-block">
+        <!-- a placeholder for the view -->
+        <div class="well well-sm" ng-cloak="true" ui-view>
+            <!-- content goes here -->
+        </div>
+    </div>
 </div>
+
 </body>
 <!-- inject:js -->
 <!-- endinject -->

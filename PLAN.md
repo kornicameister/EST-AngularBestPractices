@@ -34,6 +34,9 @@ Goal of C1 is to create:
    * what's the purpose of an abstract states and how to leverage them to create common base for all states
    * how to create single state [as javascript file] and use following features
      * path matching to get some part of the URL and use it to provide different data, different controllers and so on
+     
+   
+   Remember to provide otherwiseUrl for application
 
 ### Notes for me
 
