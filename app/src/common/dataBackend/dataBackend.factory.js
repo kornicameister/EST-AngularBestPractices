@@ -25,6 +25,9 @@ angular
         DataBackendFactory.prototype.get = function get(id) {
             return dataBackendService.get(this.key, id);
         };
+        DataBackendFactory.prototype.query = function query(query) {
+            return dataBackendService.query(this.key, query);
+        };
 
         return function construct(key) {
             return new DataBackendFactory(key);

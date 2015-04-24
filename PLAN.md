@@ -64,7 +64,7 @@ Goal of C1 is to create:
 Goals for C2 are as follow:
 
 * acknowledge participants with services, factories
-* create a service/factory implementing CRUD functionality for TODO
+* create a factory implementing CRUD functionality for TODO
   * start clean with an consistent API and exposing **C*reate, **R**ead, **U**pdate, **D**elete methods
   * keep in mind to describe how to use prepared backend simulating persistent storage over localstorage
 
