@@ -1,3 +1,7 @@
+# Before start fixes
+
+* todo.decorator > usage of undefined _.format function
+
 # General notes
 
 * have the view chunks ready in seperate location to show them to participants, thus move the learning curve to actual problem, which is using Angular and not writing views
@@ -24,6 +28,12 @@ Goal of C1 is to create:
   * display single todo
   * create it
   * delete it
+  
+   Checkpoint question: How to accomplish being generic:
+    * use single state, controllerProvider and templateUrl as a function
+    * or
+    * define another abstract state
+     * question is > Are those views really so different ?
 
    Participant will get a walk through the best practices for creating ui-router based single page application.
    Following items will be learned:
