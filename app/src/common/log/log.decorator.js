@@ -28,7 +28,7 @@
           error: $log.error
         };
       }($log)),
-      supplant = '{ts} - {cn}{msg}';
+        supplant = _.template('${ts} - ${cn}${msg}');
 
     // lets add new function here, that will inject customized $log behaviour
     $log.getInstance = getInstance;
@@ -60,7 +60,7 @@
             now = moment().format('DD.MM.YYYY@HH:mm:ss');
 
           // prepend a timestamp and optional classname to the original output message
-          args[0] = _.format(supplant, {
+          args[0] = supplant({
             ts: now,
             cn: className,
             msg: args[0]

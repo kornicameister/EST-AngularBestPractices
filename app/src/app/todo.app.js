@@ -8,4 +8,7 @@ angular
     .value('$anchorScroll', angular.noop)
     .config(function ($compileProvider, DEBUG_MODE) {
         $compileProvider.debugInfoEnabled(DEBUG_MODE);
+    })
+    .run(function ($rootScope) {
+        $rootScope.$on("$stateChangeError", console.log.bind(console));
     });
