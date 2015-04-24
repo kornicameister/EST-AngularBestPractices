@@ -75,6 +75,7 @@ angular
                     case TODO_ACTIONS.EDIT:
                     case TODO_ACTIONS.DELETE:
                         if (!id) {
+                            // TODO add routing to error state or provide simple alert
                             reject(new Error('Creating, updating and deleting requires a knowledge of todo id'));
                         }
                 }
