@@ -7,7 +7,13 @@ angular
             resolve    : {
                 'todos': getAllTodos
             },
-            templateUrl: 'app/view/todos/todos.tpl.html'
+            templateUrl: 'app/view/todos/todos.tpl.html',
+            onEnter    : function (applicationLabel, loggerFactory) {
+                /*
+                 This shows that indeed what has been resolved in the parent state is available for child
+                 */
+                loggerFactory('td.all').info('Application label I inherited from my parent is > ' + applicationLabel);
+            }
         });
 
         // use this state as default one
