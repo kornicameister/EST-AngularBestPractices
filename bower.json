@@ -68,7 +68,9 @@
     "jquery": "latest",
     "bowser": "~0.7.2",
     "firebase": "~2.2.0",
-    "angularfire": "~1.0.0"
+    "angularfire"          : "~1.0.0",
+    "angular-local-storage": "~0.1.5",
+    "angular-uuid4"        : "~0.3.0"
   },
   "devDependencies": {
     "angular-mocks": "latest",
