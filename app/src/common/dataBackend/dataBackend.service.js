@@ -8,7 +8,7 @@ angular
         var service = this,
             logger = loggerFactory('dataBackendService'),
             putLogMsg = _.template('put(${type},${data})'),
-            queryLogMsg = _.template('put(${type},${query})'),
+            queryLogMsg = _.template('query(${type},${query})'),
             getLogMsg = _.template('get(${type},${id})'),
             rmLogMsg = _.template('remove(${type},${id})');
 
@@ -22,12 +22,12 @@ angular
                 type : type,
                 query: query
             }));
-            return $q(function (resolve, reject) {
-                if (!query) {
-                    reject(new Error('Query is undefined, cannot do query'));
-                }
+            return $q(function (resolve) {
                 var dataBucket = getDataBucket(type);
-                resolve(_.filter(dataBucket), query);
+                if (!query) {
+                    return resolve(dataBucket);
+                }
+                return resolve(_.filter(dataBucket), query);
             });
         }
 
@@ -40,11 +40,11 @@ angular
             return $q(function (resolve, reject) {
 
                 if (!id) {
-                    reject(new Error('Cannot get, id(s) undefined'));
+                    return reject(new Error('Cannot get, id(s) undefined'));
                 }
 
                 var dataBucket = getDataBucket(type);
-                resolve(dataBucket[id]);
+                return resolve(dataBucket[id]);
             });
 
         }
@@ -61,7 +61,7 @@ angular
                     dataBucket;
 
                 if (!data) {
-                    reject(new Error('Undefined data'));
+                    return reject(new Error('Undefined data'));
                 }
 
                 /*
@@ -84,7 +84,7 @@ angular
                 dataBucket[id] = data;
                 saveDataBucket(type, dataBucket);
 
-                resolve(data);
+                return resolve(data);
             })
         }
 
@@ -95,7 +95,7 @@ angular
             }));
             return $q(function (resolve, reject) {
                 if (!id) {
-                    reject(new Error('Cannot remove, id(s) undefined'));
+                    return reject(new Error('Cannot remove, id(s) undefined'));
                 }
 
                 var dataBucket = getDataBucket(type),
@@ -110,7 +110,7 @@ angular
                 });
 
                 saveDataBucket(type, dataBucket);
-                resolve(removed);
+                return resolve(removed);
 
             })
         }

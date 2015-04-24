@@ -19,12 +19,18 @@ angular.module('todo.common.data')
         }
 
         function read(arg) {
-            var isArray = _.isArray(arg), // assume list of ids
-                isObject = _.isPlainObject(arg), // assume query
-                isString = _.isString(arg),
-                promises;
 
             return $q(function (resolve, reject) {
+
+                if (!arg) {
+                    // no arg...read all
+                    return todoBackend.query();
+                }
+
+                var isArray = _.isArray(arg), // assume list of ids
+                    isObject = _.isPlainObject(arg), // assume query
+                    isString = _.isString(arg),
+                    promises;
 
                 if ((isArray && arg.length === 1) && _.isString(arg[0])) {
                     // arg is an array with single element, use get to be quick
