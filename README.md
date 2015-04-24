@@ -40,6 +40,8 @@ track of concrete [tasks](https://github.com/gulpjs/gulp/blob/master/docs/gettin
 
 #Reference
 * [AngularJS Best Practies: Directory Structure](https://scotch.io/tutorials/angularjs-best-practices-directory-structure)
+* [Angular Styleguide](https://github.com/johnpapa/angular-styleguide)
+* [Angular Styleguide 2](https://github.com/toddmotto/angularjs-styleguide)
 
 #NPM/Bower proxy issues
 

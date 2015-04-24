@@ -12,3 +12,8 @@ angular
     .run(function ($rootScope) {
         $rootScope.$on("$stateChangeError", console.log.bind(console));
     });
+
+/*
+ Do not save refernce to the module. If you need to set something
+ multiple times for the same module...use following syntax.
+ */
