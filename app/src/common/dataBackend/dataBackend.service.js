@@ -37,26 +37,14 @@ angular
                 id  : id
             }));
 
-            var ret = [];
-
             return $q(function (resolve, reject) {
 
                 if (!id) {
                     reject(new Error('Cannot get, id(s) undefined'));
                 }
 
-                var dataBucket = getDataBucket(type),
-                    idIsArray = _.isArray(id);
-
-                if (!idIsArray) {
-                    ret.push(dataBucket[id]);
-                } else {
-                    ret = _.map(idIsArray, function (id) {
-                        return dataBucket[id];
-                    });
-                }
-
-                resolve(ret.length > 1 ? _.compact(ret) : ret[0]);
+                var dataBucket = getDataBucket(type);
+                resolve(dataBucket[id]);
             });
 
         }
