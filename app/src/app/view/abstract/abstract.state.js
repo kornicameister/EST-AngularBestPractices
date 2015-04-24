@@ -8,6 +8,15 @@ angular
             name    : 'td',
             url     : '/td',
             abstract: true,
+            data: {
+                /*
+                 Data properties cannot be resolved as promises and cannot be injected
+                 anywhere. They are just arbitrary information developer would like
+                 to pass and reuse somewhere.
+                 */
+                name: 'td',
+                foo : 'foo'
+            },
             resolve : {
                 /**
                  * Example of inheriting resolved values. Following
