@@ -1,8 +1,8 @@
 angular
     .module('todo.app.view.todo')
-    .config(function todoState($stateProvider) {
+    .config(function todoState($stateProvider, TODO_ACTIONS) {
 
-        var loggerName = 'todo.generic';
+        var loggerName = 'td.generic';
 
         /*
          Best practice hints:
@@ -35,20 +35,17 @@ angular
             templateUrl       : provideTemplateUrl
         });
 
-        function provideTemplateUrl(stateInformation) {
-            console.log('dupa');
-            var action = stateInformation.action;
-            return 'app/view/todo/' + action + '.tpl.html'
+        function provideTemplateUrl(params) {
+            return 'app/view/todo/' + params.action + '.tpl.html'
         }
 
-        function provideController(stateInformation) {
-            console.log('kupa');
-            var action = stateInformation.action;
+        function provideController($stateParams) {
+            var action = $stateParams.action;
             switch (action) {
-                case 'create':
-                case 'edit':
+                case TODO_ACTIONS.CREATE:
+                case TODO_ACTIONS.EDIT:
                 //return 'CreateEditTodoController';
-                case 'delete':
+                case TODO_ACTIONS.DELETE:
                 //return 'DeleteTodoController';
             }
             return angular.noop;
@@ -64,21 +61,19 @@ angular
          *  * todo_object
          *
          * @param $q promise
-         * @param params state params
+         * @param $stateParams state params
          * @param loggerFactory logger factory
          */
-        function getStateInformation($q, params, loggerFactory) {
-            console.log('zupa');
-            var action = params.action,
-                id = params.id,
+        function getStateInformation($q, $stateParams, loggerFactory) {
+            var action = $stateParams.action,
+                id = $stateParams.id,
                 data,
                 logger = loggerFactory(loggerName);
 
             return $q(function (resolve, reject) {
                 switch (action) {
-                    case 'create':
-                    case 'edit':
-                    case 'delete':
+                    case TODO_ACTIONS.EDIT:
+                    case TODO_ACTIONS.DELETE:
                         if (!id) {
                             reject(new Error('Creating, updating and deleting requires a knowledge of todo id'));
                         }
