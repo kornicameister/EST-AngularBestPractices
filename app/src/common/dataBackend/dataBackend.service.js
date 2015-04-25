@@ -25,9 +25,9 @@ angular
             return $q(function (resolve) {
                 var dataBucket = getDataBucket(type);
                 if (!query) {
-                    return resolve(dataBucket);
+                    return resolve(asArray(dataBucket));
                 }
-                return resolve(_.filter(dataBucket), query);
+                return resolve(asArray(_.filter(dataBucket), query));
             });
         }
 
@@ -84,7 +84,7 @@ angular
                 dataBucket[id] = data;
                 saveDataBucket(type, dataBucket);
 
-                return resolve(data);
+                return resolve(asArray(data));
             })
         }
 
@@ -104,15 +104,20 @@ angular
 
                 _.forEachRight(rmIds, function (rmId) {
                     if (dataBucket[rmId]) {
-                        delete dataBucket[rmId]
-                        removed.push(rmId);
+                        removed.push(dataBucket[rmId]);
+                        delete dataBucket[rmId];
                     }
                 });
 
                 saveDataBucket(type, dataBucket);
-                return resolve(removed);
+                return resolve(asArray(removed));
 
             })
+        }
+
+        function asArray(data) {
+            // keys are ids but those ids are also in the data pieces itself
+            return _.values(data);
         }
 
         function saveDataBucket(type, bucket) {
