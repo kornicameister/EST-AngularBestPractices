@@ -24,7 +24,7 @@ angular.module('todo.common.data')
 
                 if (!arg) {
                     // no arg...read all
-                    return todoBackend.query().then(resolve);
+                    return todoBackend.all().then(resolve);
                 }
 
                 var isArray = _.isArray(arg), // assume list of ids

@@ -16,6 +16,7 @@ angular
             this.key = key;
         }
 
+
         DataBackendFactory.prototype.put = function put(data) {
             return dataBackendService.put(this.key, data);
         };
@@ -28,8 +29,11 @@ angular
         DataBackendFactory.prototype.query = function query(query) {
             return dataBackendService.query(this.key, query);
         };
+        DataBackendFactory.prototype.all = function all() {
+            return dataBackendService.all(this.key);
+        };
 
-        return function construct(key) {
+        return function ctor(key) {
             return new DataBackendFactory(key);
         };
     });
