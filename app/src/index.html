@@ -1,6 +1,7 @@
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" lang="pl"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"
+          lang="pl"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>{{PAGE_TITLE}}</title>
@@ -9,7 +10,17 @@
     <!-- endinject -->
 </head>
 <body ng-app="todo">
+<div>
+    <header>
 
+    </header>
+    <section id="todo-content" class="container-fluid">
+        <div ui-view="content"></div>
+    </section>
+    <footer>
+
+    </footer>
+</div>
 </body>
 <!-- inject:js -->
 <!-- endinject -->
