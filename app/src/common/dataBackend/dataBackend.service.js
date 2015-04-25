@@ -8,26 +8,35 @@ angular
         var service = this,
             logger = loggerFactory('dataBackendService'),
             putLogMsg = _.template('put(${type},${data})'),
+            allLogMsg = _.template('all(${type})'),
             queryLogMsg = _.template('query(${type},${query})'),
             getLogMsg = _.template('get(${type},${id})'),
             rmLogMsg = _.template('remove(${type},${id})');
 
+        service.all = all.bind(service);
         service.get = get.bind(service);
         service.query = query.bind(service);
         service.put = put.bind(service);
         service.remove = remove.bind(service);
+
+        function all(type) {
+            logger.info(allLogMsg({type: type}));
+            return $q(function (resolve) {
+                resolve(asArray(getDataBucket(type)));
+            });
+        }
 
         function query(type, query) {
             logger.info(queryLogMsg({
                 type : type,
                 query: query
             }));
-            return $q(function (resolve) {
-                var dataBucket = getDataBucket(type);
+            return $q(function (resolve, reject) {
                 if (!query) {
-                    return resolve(asArray(dataBucket));
+                    reject(new Error('Query is undefined, cannot do query'));
                 }
-                return resolve(asArray(_.filter(dataBucket), query));
+                var dataBucket = getDataBucket(type);
+                resolve(asArray(_.filter(dataBucket)), query);
             });
         }
 
