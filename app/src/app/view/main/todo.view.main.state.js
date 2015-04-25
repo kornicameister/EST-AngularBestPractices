@@ -3,7 +3,7 @@ angular.module('todo.app.view.main')
 
         $stateProvider.state({
             name: 'todo.main',
-            url: '/main',
+            url : '/main',
             views: {
                 'content': {
                     template: 'Main'
