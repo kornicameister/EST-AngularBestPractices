@@ -7,17 +7,28 @@
                 /**
                  *
                  */
-                urlParams: urlParams,
+                urlParams : urlParams,
                 /**
                  *
                  */
-                urlDecode: urlDecode,
+                urlDecode : urlDecode,
                 /**
                  *
                  */
-                isDebug  : isDebug
+                isDebug   : isDebug,
+                dumpObject: dumpObject
             }
         });
+
+    function dumpObject(obj) {
+        return _(obj)
+            .chain()
+            .thru(function (val) {
+                return JSON.stringify(val, null, 4);
+            })
+            .toString()
+            .trim();
+    }
 
     function urlParams(url) {
         url = url || window.location.href;
