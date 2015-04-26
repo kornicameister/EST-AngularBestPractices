@@ -24,6 +24,11 @@ angular
                 sortable: true
             },
             {
+                label   : 'Timestamp',
+                index   : 'updated_at',
+                sortable: true
+            },
+            {
                 label: 'Actions',
                 index: 'actions'
             }

@@ -32,6 +32,9 @@
                 <i class="glyphicon" ng-class="{'glyphicon-ok':todo.completed,'glyphicon-minus':!todo.completed}"></i>
             </td>
             <td>
+                {{todo.updated_at | date:'MM/dd/yyyy @ h:mma'}}
+            </td>
+            <td>
                 <div class="btn-group btn-group-sm">
                     <button class="btn btn-sm" title="Remove" ng-click="vm.deleteTodo(todo)">
                         <i class="glyphicon glyphicon-remove"></i></button>
