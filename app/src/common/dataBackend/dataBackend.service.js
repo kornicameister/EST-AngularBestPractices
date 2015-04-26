@@ -22,7 +22,7 @@ angular
         function all(type) {
             logger.info(allLogMsg({type: type}));
             return $q(function (resolve) {
-                resolve(asArray(getDataBucket(type)));
+                resolve(getDataBucket(type));
             });
         }
 
@@ -36,7 +36,7 @@ angular
                     reject(new Error('Query is undefined, cannot do query'));
                 }
                 var dataBucket = getDataBucket(type);
-                resolve(asArray(_.filter(dataBucket)), query);
+                resolve(_.filter(dataBucket, query));
             });
         }
 
@@ -53,7 +53,7 @@ angular
                 }
 
                 var dataBucket = getDataBucket(type);
-                return resolve(dataBucket[id]);
+                return resolve(_.find(dataBucket, {id: id}));
             });
 
         }
@@ -83,17 +83,26 @@ angular
                 if (!(id = data.id)) {
                     isUpdate = false;
                     data.id = id = uuid4.generate();
+                    logger.debug('Creating todo with id=' + id);
+                } else {
+                    isUpdate = true;
                 }
 
                 if (isUpdate) {
-                    oldData = dataBucket[id];
+                    logger.debug('Updating todo with id=' + id);
+                    oldData = _.find(dataBucket, {id: id});
                     data = _.merge(oldData, data);
                 }
 
-                dataBucket[id] = data;
+                if (isUpdate) {
+                    dataBucket[_.indexOf(dataBucket, oldData)] = data;
+                } else {
+                    dataBucket.push(data);
+                }
+
                 saveDataBucket(type, dataBucket);
 
-                return resolve(asArray(data));
+                return resolve(data);
             })
         }
 
@@ -119,25 +128,20 @@ angular
                 });
 
                 saveDataBucket(type, dataBucket);
-                return resolve(asArray(removed));
+                return resolve(removed);
 
             })
         }
 
-        function asArray(data) {
-            // keys are ids but those ids are also in the data pieces itself
-            return _.values(data);
-        }
-
         function saveDataBucket(type, bucket) {
-            bucket = _.sortBy(bucket, 'id');
+            bucket = _(bucket).chain().compact().sortBy('id').value();
             localStorageService.set(type, bucket);
         }
 
         function getDataBucket(type) {
             var bucket = localStorageService.get(type);
             if (!bucket) {
-                bucket = {};
+                bucket = [];
                 localStorageService.set(type, bucket);
             }
             return bucket;
