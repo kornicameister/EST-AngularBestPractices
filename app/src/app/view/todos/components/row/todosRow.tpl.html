@@ -1,0 +1,25 @@
+<tr>
+    <td>
+        {{$index}}
+    </td>
+    <td>
+        {{vm.todo.id}}
+    </td>
+    <td>
+        {{vm.todo.message}}
+    </td>
+    <td>
+        <i class="glyphicon" ng-class="{'glyphicon-ok':vm.todo.completed,'glyphicon-minus':!vm.todo.completed}"></i>
+    </td>
+    <td>
+        {{(vm.todo.updated_at || vm.todo.created_at) | date:'MM/dd/yyyy @ h:mma'}}
+    </td>
+    <td>
+        <div class="btn-group btn-group-sm">
+            <button class="btn btn-sm" title="Remove" data-action="delete">
+                <i class="glyphicon glyphicon-remove"></i></button>
+            <button class="btn btn-sm" title="Edit" data-action="edit">
+                <i class="glyphicon glyphicon-edit"></i></button>
+        </div>
+    </td>
+</tr>

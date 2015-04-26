@@ -1,6 +1,6 @@
 angular
     .module('todo.app.view.todos')
-    .controller('TodosController', function ($state, dataCrud, TODO_ACTIONS, todos) {
+    .controller('TodosController', function (todos) {
         var vm = this;
 
         vm.todos = todos || [];
@@ -27,27 +27,7 @@ angular
                 label   : 'Timestamp',
                 index   : 'updated_at',
                 sortable: true
-            },
-            {
-                label: 'Actions',
-                index: 'actions'
             }
         ];
 
-        vm.editTodo = editTodo.bind(vm);
-        vm.deleteTodo = deleteTodo.bind(vm);
-
-        function editTodo(todo) {
-            $state.go('td.generic', {
-                action: TODO_ACTIONS.EDIT,
-                id    : todo.id
-            });
-        }
-
-        function deleteTodo(todo) {
-            $state.go('td.generic', {
-                action: TODO_ACTIONS.DELETE,
-                id    : todo.id
-            });
-        }
     });

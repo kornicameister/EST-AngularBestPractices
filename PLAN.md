@@ -133,7 +133,7 @@ There should be also one additional button to go to create view
 * directive should add following actions to each row
  * delete > should redirect to the delete view
  * complete > should simply update the state of an object in the backend
-* all actions should be controller from the controller
+* all actions should be controlled from the controller
 
 ## Filter
 

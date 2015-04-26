@@ -1,0 +1,13 @@
+<table class="table table-hover">
+    <caption>
+        List of all todos
+    </caption>
+    <thead>
+    <tr>
+        <th scope="col" ng-repeat="col in vm.columns track by $id(col)">{{col.label}}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="animate-row" ng-repeat="todo in vm.todos as td" td-todo-row="todo"></tr>
+    </tbody>
+</table>
