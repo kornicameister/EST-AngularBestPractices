@@ -1,1 +1,48 @@
-<h1>Testing</h1>
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+        <span class="navbar-text">Todos [{{vm.todos.length}}]</span>
+        <a class="btn btn-primary navbar-btn"
+           title="Create new"
+           ui-sref="td.generic({action:'create'})">Create new
+        </a>
+    </div>
+</nav>
+<section class="container todos">
+    <table class="table table-hover" ng-if="vm.todos.length">
+        <caption>
+            List of all todos
+        </caption>
+        <thead>
+        <tr>
+            <th scope="col" ng-repeat="col in vm.columns track by $id(col)">{{col.label}}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="animate-row" ng-repeat="todo in vm.todos">
+            <td>
+                {{$index}}
+            </td>
+            <td>
+                {{todo.id}}
+            </td>
+            <td>
+                {{todo.message}}
+            </td>
+            <td>
+                <i class="glyphicon" ng-class="{'glyphicon-ok':todo.completed,'glyphicon-minus':!todo.completed}"></i>
+            </td>
+            <td>
+                <div class="btn-group btn-group-sm">
+                    <button class="btn btn-sm" title="Remove" ng-click="vm.deleteTodo(todo)">
+                        <i class="glyphicon glyphicon-remove"></i></button>
+                    <button class="btn btn-sm" title="Edit" ng-click="vm.editTodo(todo)">
+                        <i class="glyphicon glyphicon-edit"></i></button>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div ng-if="!vm.todos.length">
+        Currently no data to be shown...
+    </div>
+</section>

@@ -2,13 +2,15 @@ angular
     .module('todo.app.view.todos')
     .config(function todoState($stateProvider, $urlRouterProvider) {
         $stateProvider.state({
-            name       : 'td.all',
-            url        : '/todos',
-            resolve    : {
+            name        : 'td.all',
+            url         : '/todos',
+            resolve     : {
                 'todos': getAllTodos
             },
-            templateUrl: 'app/view/todos/todos.tpl.html',
-            onEnter    : function (applicationLabel, loggerFactory) {
+            templateUrl : 'app/view/todos/todos.tpl.html',
+            controllerAs: 'vm',
+            controller  : 'TodosController',
+            onEnter     : function (applicationLabel, loggerFactory) {
                 /*
                  This shows that indeed what has been resolved in the parent state is available for child
                  */
@@ -23,7 +25,7 @@ angular
          * Retrieves all of the todos currently available
          * @return {Array}
          */
-        function getAllTodos() {
-            return []
+        function getAllTodos(dataCrud) {
+            return dataCrud.read();
         }
     });
