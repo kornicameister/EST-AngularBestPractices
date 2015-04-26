@@ -71,7 +71,7 @@
       "angular-animate"      : "1.4.x",
       "angular-moment"       : "0.9.x",
       "angular-cookies"      : "1.4.x",
-      "angular-growl-v2"     : "0.7.x",
+      "angular-growl-v2": "~0.7.3",
       "bootstrap"            : "3.3.x",
       "jquery"               : "latest",
       "bowser"               : "~0.7.2",
