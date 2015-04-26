@@ -9,7 +9,7 @@
 </nav>
 <section class="container todos">
     <div ng-if="vm.todos.length">
-        <td-todos todos="vm.todos" columns="vm.columns"></td-todos>
+        <td-todo-table todos="vm.todos" columns="vm.columns"></td-todo-table>
     </div>
     <div ng-if="!vm.todos.length">
         Currently no data to be shown...

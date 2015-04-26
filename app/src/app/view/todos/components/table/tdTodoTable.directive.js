@@ -1,6 +1,6 @@
 angular
     .module('todo.app.view.todos')
-    .directive('tdTodos', function () {
+    .directive('tdTodoTable', function () {
         return {
             restrict        : 'E',
             scope           : {
@@ -9,7 +9,7 @@ angular
             },
             bindToController: true,
             controllerAs    : 'vm',
-            controller      : 'TdTodosController',
-            templateUrl     : 'app/view/todos/components/tdTodos.tpl.html'
+            controller : 'TdTodoTableController',
+            templateUrl: 'app/view/todos/components/table/tdTodoTable.tpl.html'
         }
     });

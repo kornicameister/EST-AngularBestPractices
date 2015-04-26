@@ -8,6 +8,6 @@
     </tr>
     </thead>
     <tbody>
-    <tr class="animate-row" ng-repeat="todo in vm.todos as td" td-todo-row="todo"></tr>
+    <tr class="animate-row" ng-repeat="todo in vm.todos as td" td-todo-row="todo" td-todo-row-pk="{{$index+1}}"></tr>
     </tbody>
 </table>

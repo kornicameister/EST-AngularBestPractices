@@ -1,6 +1,6 @@
 angular
     .module('todo.app.view.todos')
-    .controller('TdTodosController', function ($state, TODO_ACTIONS) {
+    .controller('TdTodoTableController', function ($state, TODO_ACTIONS) {
         var vm = this;
 
         /*

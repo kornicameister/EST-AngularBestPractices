@@ -3,6 +3,7 @@ angular
     .directive('tdTodoRow', function (TODO_ACTIONS) {
         return {
             restrict        : 'A',
+            replace         : true,
             /*
              Best practice hint:
              - It is possible to combine ng-repeat along with custom directive.
@@ -17,7 +18,8 @@ angular
                  It is the same one as for the directive, thus usage is very natural
                  and does not require much coding.
                  */
-                todo: '=tdTodoRow'
+                todo : '=tdTodoRow',
+                index: '@tdTodoRowPk'
             },
             /*
              We have two actions defined in the template (check it to confirm) but
@@ -25,11 +27,11 @@ angular
              that our directive require tdTodos directive in order to communicate with it
              and call some public methods of its controller.
              */
-            require         : '^tdTodos', // !!! parent tdTodos is required here, thus directive may exists only withing tdTodos
+            require         : '^tdTodoTable', // !!! parent tdTodos is required here, thus directive may exists only withing tdTodos
             bindToController: true,
             controllerAs    : 'vm',
             controller      : angular.noop,
-            link            : function (scope, element, attrs, tdTodosController) {
+            link            : function (scope, element, attrs, tdTodoTableCtrl) {
                 /*
                  Best practice hint:
                  Notice that it is possible to achieve directive<->directive communication
@@ -52,14 +54,14 @@ angular
                         todo = scope.vm.todo;
                     switch (act) {
                         case TODO_ACTIONS.DELETE:
-                            tdTodosController.deleteTodo(todo);
+                            tdTodoTableCtrl.deleteTodo(todo);
                             break;
                         case TODO_ACTIONS.EDIT:
-                            tdTodosController.editTodo(todo);
+                            tdTodoTableCtrl.editTodo(todo);
                             break;
                     }
                 }
             },
-            templateUrl     : 'app/view/todos/components/todosRow.tpl.html'
+            templateUrl     : 'app/view/todos/components/row/tdTodoRow.tpl.html'
         }
     });
