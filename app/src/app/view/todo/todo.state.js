@@ -31,12 +31,21 @@ angular
             resolve           : {
                 stateInformation: getStateInformation
             },
+            controllerAs: 'vm',
             controllerProvider: provideController,
             templateUrl       : provideTemplateUrl
         });
 
         function provideTemplateUrl(params) {
-            return 'app/view/todo/' + params.action + '.tpl.html'
+            var action = params.action;
+            switch (action) {
+                case TODO_ACTIONS.CREATE:
+                case TODO_ACTIONS.EDIT:
+                    return 'app/view/todo/modify.tpl.html';
+                case TODO_ACTIONS.DELETE:
+                    return 'app/view/todo/delete.tpl.html';
+            }
+            throw new Error('Unsupported action, cannot provide template url');
         }
 
         function provideController($stateParams) {
@@ -44,7 +53,7 @@ angular
             switch (action) {
                 case TODO_ACTIONS.CREATE:
                 case TODO_ACTIONS.EDIT:
-                //return 'CreateEditTodoController';
+                    return 'CreateEditTodoController';
                 case TODO_ACTIONS.DELETE:
                 //return 'DeleteTodoController';
             }
@@ -62,9 +71,10 @@ angular
          *
          * @param $q promise
          * @param $stateParams state params
+         * @param dataCrud an API o the CRUD interface of an application
          * @param loggerFactory logger factory
          */
-        function getStateInformation($q, $stateParams, loggerFactory) {
+        function getStateInformation($q, $stateParams, dataCrud, loggerFactory) {
             var action = $stateParams.action,
                 id = $stateParams.id,
                 data,
@@ -86,13 +96,16 @@ angular
                     action: action
                 };
 
-                if (id) {
+                if (id && [TODO_ACTIONS.DELETE, TODO_ACTIONS.EDIT].indexOf(action) > -1) {
                     logger.debug('Id = ' + id + ' has been specified, todo will be retrieved');
-                    data.id = id;
-                    data.todo = {}; // todo add service calling later
+                    dataCrud.read(id).then(function (todo) {
+                        data.id = id;
+                        data.todo = todo;
+                        resolve(data);
+                    })
+                } else {
+                    resolve(data);
                 }
-
-                resolve(data);
             });
         }
     }
