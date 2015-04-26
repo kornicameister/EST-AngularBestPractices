@@ -36,7 +36,7 @@ angular
                 .catch(submitError);
 
             function submitOk(todo) {
-                growl.info('New todo has been saved, it\'s id = ' + todo.id);
+                growl.success('New todo has been saved, it\'s id = ' + todo.id);
                 $state.go('td.all');
             }
 

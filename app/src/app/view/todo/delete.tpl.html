@@ -1,11 +1,19 @@
 <h1>Deleting</h1>
 <section class="container">
-    <p class="text-danger">
-        Are You really sure that You want to delete todo {{todo.id}} ?
-    </p>
+    <div ng-if="vm.canDelete">
+        <p class="text-danger">
+            Are You really sure that You want to delete todo {{vm.todo.id}} ?
+        </p>
 
-    <div class="btn-group">
-        <button class="btn btn-warning" title="Yes" ng-click="vm.yes()">Yes</button>
-        <button class="btn btn-primary" title="No" ng-click="vm.no()">No</button>
+        <div class="btn-group">
+            <button class="btn btn-warning" title="Yes" ng-click="vm.yes()">Yes</button>
+            <button class="btn btn-primary" title="No" ng-click="vm.no()">No</button>
+        </div>
     </div>
+    <div ng-if="!vm.canDelete">
+        You cannot delete todo <span class="text-primary text-justify">{{vm.todo.id}}</span>, because it is still in
+        progress.
+        Complete it first by going to <a ui-sref="td.generic({ action:'edit', id:vm.todo.id })">here</a>.
+    </div>
+
 </section>

@@ -32,7 +32,7 @@
                 <i class="glyphicon" ng-class="{'glyphicon-ok':todo.completed,'glyphicon-minus':!todo.completed}"></i>
             </td>
             <td>
-                {{todo.updated_at | date:'MM/dd/yyyy @ h:mma'}}
+                {{(todo.updated_at || todo.created_at) | date:'MM/dd/yyyy @ h:mma'}}
             </td>
             <td>
                 <div class="btn-group btn-group-sm">

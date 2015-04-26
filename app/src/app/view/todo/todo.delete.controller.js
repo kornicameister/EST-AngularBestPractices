@@ -36,6 +36,7 @@ angular
 
         function initialize() {
             vm.todo = todo = stateInformation.todo;
+            vm.canDelete = todo.completed;
         }
 
     });
