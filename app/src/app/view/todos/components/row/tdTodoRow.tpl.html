@@ -16,9 +16,15 @@
     </td>
     <td>
         <div class="btn-group btn-group-sm">
-            <button class="btn btn-sm" title="Remove" data-action="delete">
+            <button class="btn btn-sm"
+                    title="Remove"
+                    data-action="delete"
+                    ng-click="vm.executeAction('delete')">
                 <i class="glyphicon glyphicon-remove"></i></button>
-            <button class="btn btn-sm" title="Edit" data-action="edit">
+            <button class="btn btn-sm"
+                    title="Edit"
+                    data-action="edit"
+                    ng-click="vm.executeAction('edit')">
                 <i class="glyphicon glyphicon-edit"></i></button>
         </div>
     </td>

@@ -1,6 +1,6 @@
 angular
     .module('todo.app.view.todos')
-    .directive('tdTodoRow', function (TODO_ACTIONS) {
+    .directive('tdTodoRow', function () {
         return {
             restrict        : 'A',
             replace         : true,
@@ -30,38 +30,7 @@ angular
             require         : '^tdTodoTable', // !!! parent tdTodos is required here, thus directive may exists only withing tdTodos
             bindToController: true,
             controllerAs    : 'vm',
-            controller      : angular.noop,
-            link            : function (scope, element, attrs, tdTodoTableCtrl) {
-                /*
-                 Best practice hint:
-                 Notice that it is possible to achieve directive<->directive communication
-                 using link function, an example blow is rather an unnecessary overhead.
-                 Normally we would define an actions using custom controller for this directive
-                 instead doing all this DOM onClick event and so on.
-
-                 As an exercise, there is already a controller defined to comply with the statement above.
-                 Just remove link function, update tpl to use ng-click and show it methods from this controller
-                 */
-                var buttons = element.find('button');
-
-                _.forEachRight(buttons, function (btn) {
-                    btn = angular.element(btn);
-                    btn.on('click', btnClickHandler)
-                });
-
-                function btnClickHandler() {
-                    var act = $(this).data('action'),
-                        todo = scope.vm.todo;
-                    switch (act) {
-                        case TODO_ACTIONS.DELETE:
-                            tdTodoTableCtrl.deleteTodo(todo);
-                            break;
-                        case TODO_ACTIONS.EDIT:
-                            tdTodoTableCtrl.editTodo(todo);
-                            break;
-                    }
-                }
-            },
+            controller: 'TdTodoRowController',
             templateUrl     : 'app/view/todos/components/row/tdTodoRow.tpl.html'
         }
     });

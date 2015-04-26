@@ -16,23 +16,4 @@ angular
             label: 'Actions',
             index: 'actions'
         });
-
-        // notice that these methods can be removed if You decide to reuse
-        // them from TdTodoRowController
-        vm.editTodo = editTodo.bind(vm);
-        vm.deleteTodo = deleteTodo.bind(vm);
-
-        function editTodo(todo) {
-            return $state.go('td.generic', {
-                action: TODO_ACTIONS.EDIT,
-                id    : todo.id
-            });
-        }
-
-        function deleteTodo(todo) {
-            return $state.go('td.generic', {
-                action: TODO_ACTIONS.DELETE,
-                id    : todo.id
-            });
-        }
     });
