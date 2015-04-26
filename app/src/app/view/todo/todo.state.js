@@ -55,7 +55,7 @@ angular
                 case TODO_ACTIONS.EDIT:
                     return 'CreateEditTodoController';
                 case TODO_ACTIONS.DELETE:
-                //return 'DeleteTodoController';
+                    return 'DeleteTodoController';
             }
             return angular.noop;
         }

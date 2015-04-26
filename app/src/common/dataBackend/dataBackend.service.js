@@ -83,6 +83,7 @@ angular
                 if (!(id = data.id)) {
                     isUpdate = false;
                     data.id = id = uuid4.generate();
+                    data.created_at = _.now();
                     logger.debug('Creating todo with id=' + id);
                 } else {
                     isUpdate = true;
@@ -92,6 +93,7 @@ angular
                     logger.debug('Updating todo with id=' + id);
                     oldData = _.find(dataBucket, {id: id});
                     data = _.merge(oldData, data);
+                    data.updated_at = _.now();
                 }
 
                 if (isUpdate) {
@@ -121,9 +123,12 @@ angular
                     rmIds = _.isArray(id) ? id : [id];
 
                 _.forEachRight(rmIds, function (rmId) {
-                    if (dataBucket[rmId]) {
-                        removed.push(dataBucket[rmId]);
-                        delete dataBucket[rmId];
+                    var inBuckedData = _.find(dataBucket, {id: rmId}),
+                        inBuckedDataIdx = _.indexOf(dataBucket, inBuckedData);
+                    if (inBuckedData) {
+                        delete inBuckedData.id;
+                        dataBucket.splice(inBuckedDataIdx, 1);
+                        removed.push(_.clone(inBuckedData));
                     }
                 });
 
