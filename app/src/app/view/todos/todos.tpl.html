@@ -5,11 +5,21 @@
            title="Create new"
            ui-sref="td.generic({action:'create'})">Create new
         </a>
+        <button class="btn btn-primary navbar-btn"
+                title="Only completed"
+                ng-click="vm.onlyCompleted = !vm.onlyCompleted;">
+            <span ng-if="vm.onlyCompleted">
+                Show all
+            </span>
+            <span ng-if="!vm.onlyCompleted">
+                Only completed
+            </span>
+        </button>
     </div>
 </nav>
 <section class="container todos">
     <div ng-if="vm.todos.length">
-        <td-todo-table todos="vm.todos" columns="vm.columns"></td-todo-table>
+        <td-todo-table todos="vm.todos" columns="vm.columns" only-completed="vm.onlyCompleted"></td-todo-table>
     </div>
     <div ng-if="!vm.todos.length">
         Currently no data to be shown...

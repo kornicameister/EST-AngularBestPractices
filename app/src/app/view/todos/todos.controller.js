@@ -30,4 +30,6 @@ angular
             }
         ];
 
+        vm.onlyCompleted = false;
+
     });

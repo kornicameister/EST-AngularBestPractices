@@ -4,12 +4,13 @@ angular
         return {
             restrict        : 'E',
             scope           : {
-                todos  : '=',
-                columns: '='
+                todos        : '=',
+                columns      : '=',
+                onlyCompleted: '='
             },
             bindToController: true,
             controllerAs    : 'vm',
-            controller : 'TdTodoTableController',
-            templateUrl: 'app/view/todos/components/table/tdTodoTable.tpl.html'
+            controller      : 'TdTodoTableController',
+            templateUrl     : 'app/view/todos/components/table/tdTodoTable.tpl.html'
         }
     });

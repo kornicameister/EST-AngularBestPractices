@@ -84,6 +84,7 @@ angular
                     isUpdate = false;
                     data.id = id = uuid4.generate();
                     data.created_at = _.now();
+                    data.completed = false;
                     logger.debug('Creating todo with id=' + id);
                 } else {
                     isUpdate = true;
