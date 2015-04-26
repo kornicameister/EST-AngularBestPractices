@@ -51,7 +51,11 @@ angular
         }
 
         function reset() {
-            vm.model = _.clone(emptyModel);
+            if (!editMode) {
+                vm.model = _.clone(emptyModel);
+            } else {
+                vm.model = _.clone(todo);
+            }
         }
 
         function initialize() {
