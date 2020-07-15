@@ -19,7 +19,7 @@
   "engine": "node 0.10.25",
   "dependencies": {
     "gulp": "3.8.x",
-    "lodash": "3.5.x",
+    "lodash": "4.17.x",
     "express": "4.12.x"
   },
   "devDependencies": {
